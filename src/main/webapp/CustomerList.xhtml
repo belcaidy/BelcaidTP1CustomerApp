@@ -13,14 +13,18 @@
 
             <h:form>
                 <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{customerMBean.customers}" var="item">
+                <p:dataTable value="#{customerMBean.customers}" var="item"
+                     rows="10" paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                     rowsPerPageTemplate="5,10,{ShowAll|'All'}">
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="CustomerId"/>
                         </f:facet>
                         <h:outputText value="#{item.customerId}"/>
                     </p:column>
-                    <p:column>
+                    <p:column sortBy="#{item.name}" headerText="name" filterBy="#{item.name}">
                         <f:facet name="header">
                             <h:outputText value="Name"/>
                         </f:facet>
@@ -38,13 +42,13 @@
                         </f:facet>
                         <h:outputText value="#{item.addressline2}"/>
                     </p:column>
-                    <p:column>
+                    <p:column sortBy="#{item.city}" headerText="city">
                         <f:facet name="header">
                             <h:outputText value="City"/>
                         </f:facet>
                         <h:outputText value="#{item.city}"/>
                     </p:column>
-                    <p:column>
+                    <p:column sortBy="#{item.state}" headerText="state" filterBy="#{item.name}">
                         <f:facet name="header">
                             <h:outputText value="State"/>
                         </f:facet>
